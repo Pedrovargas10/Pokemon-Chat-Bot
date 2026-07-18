@@ -1,0 +1,67 @@
+"""Assembles scraped Markdown files into a single RAG context string."""
+
+from __future__ import annotations
+
+import logging
+from pathlib import Path
+
+logger = logging.getLogger(__name__)
+
+_SECTION_SEPARATOR = "\n\n---\n\n"
+
+
+def build_context(data_dir: Path) -> str:
+    """Read all .md files from *data_dir* and concatenate them.
+
+    Returns an empty string if no files are found or the directory
+    does not exist.
+    """
+    if not data_dir.exists():
+        return ""
+
+    md_files = sorted(data_dir.glob("*.md"))
+    if not md_files:
+        return ""
+
+    sections: list[str] = []
+    for md_file in md_files:
+        content = md_file.read_text(encoding="utf-8").strip()
+        if content:
+            sections.append(content)
+
+    combined = _SECTION_SEPARATOR.join(sections)
+    logger.info(
+        "Built context from %d files (%d chars)", len(sections), len(combined)
+    )
+    return combined
+
+
+def get_system_prompt(context: str) -> str:
+    """Wrap the scraped context in the bot's persona and instructions.
+
+    The returned string is used as ``system_instruction`` for the Gemini API.
+    """
+    if not context.strip():
+        data_block = (
+            "\n\n[DADOS INDISPONÍVEIS — os coletores ainda não rodaram. "
+            "Informe ao usuário que os dados estão sendo carregados.]\n"
+        )
+    else:
+        data_block = f"\n\n{context}\n"
+
+    return f"""Você é o **PokéGuia**, um assistente virtual especialista em Pokémon GO.
+Sua função é ajudar jogadores respondendo dúvidas sobre eventos, raids, spotlight hours,
+tier lists de atacantes e estratégias do jogo.
+
+## Regras:
+1. Responda SEMPRE em português brasileiro, de forma clara e amigável.
+2. Use APENAS os dados fornecidos abaixo para responder. Não invente informações.
+3. Se a informação não estiver nos dados, diga honestamente que não tem essa informação no momento.
+4. Quando relevante, dê conselhos estratégicos (ex: "guarde seus passes de reide para o próximo mês", "aproveite o spotlight hour para farmear candies").
+5. Formate respostas com emojis e listas quando apropriado para facilitar a leitura no Telegram.
+6. Ao mencionar datas, converta para formato legível (ex: "terça-feira, 21 de julho").
+7. Cruze informações entre eventos, raids e tier lists para dar respostas completas.
+8. Dados coletados de LeekDuck/ScrapedDuck e Pokebattler. Créditos a essas fontes quando solicitado.
+
+## Dados Atualizados do Pokémon GO:
+{data_block}"""
