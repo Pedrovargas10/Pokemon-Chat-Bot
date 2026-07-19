@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Pokemon_Chat_Bot-1a2744?style=for-the-badge&logo=telegram&logoColor=white" alt="Pokemon Chat Bot">
+  <img src="docs/assets/logopokeguia.jpg" alt="Pokemon Chat Bot — Seu assistente definitivo para PVE no Pokemon GO" width="200" style="border-radius: 50%;">
 </p>
 
 <p align="center">
