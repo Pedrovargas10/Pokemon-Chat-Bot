@@ -61,7 +61,7 @@ async def handle_raids(
         "Quais são as raids atuais e próximas? "
         "Inclua os tier levels e, se disponível, os melhores contadores."
     )
-    await update.message.reply_text(answer, parse_mode="Markdown")
+    await update.message.reply_text(answer)
 
 
 async def handle_events(
@@ -74,7 +74,7 @@ async def handle_events(
         "Quais eventos estão acontecendo agora e quais são os próximos? "
         "Dê conselhos estratégicos sobre como aproveitar cada um."
     )
-    await update.message.reply_text(answer, parse_mode="Markdown")
+    await update.message.reply_text(answer)
 
 
 async def handle_spotlight(
@@ -87,7 +87,7 @@ async def handle_spotlight(
         "Quais são os próximos Pokémon Spotlight Hours? "
         "Quais valem a pena participar e por quê?"
     )
-    await update.message.reply_text(answer, parse_mode="Markdown")
+    await update.message.reply_text(answer)
 
 
 async def handle_message(
@@ -107,7 +107,7 @@ async def handle_message(
         "Question from %s: %s", update.effective_user.first_name, question
     )
     answer = await gemini.ask(question)
-    await update.message.reply_text(answer, parse_mode="Markdown")
+    await update.message.reply_text(answer)
 
 
 def create_bot(token: str, gemini: GeminiClient) -> Application:
