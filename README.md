@@ -1,161 +1,86 @@
-# Pokemon Chat Bot
+<p align="center">
+  <img src="https://img.shields.io/badge/Pokemon_Chat_Bot-1a2744?style=for-the-badge&logo=telegram&logoColor=white" alt="Pokemon Chat Bot">
+</p>
 
-Bot para Telegram focado em jogadores de Pokemon GO, oferecendo informacoes atualizadas sobre eventos, raids, horas de holofote e rankeamentos detalhados de atacantes para PVE baseados em calculos avancados de dano por segundo.
-
-> Projeto open-source desenvolvido para auxiliar treinadores a montarem as melhores equipes para raids no Pokemon GO.
-
----
-
-## Pre-requisitos
-
-| Ferramenta | Versao | Necessario para |
-|-----------|--------|----------------|
-| Python | 3.10+ | Executar o core do bot e scripts de coleta |
-| Node.js | 20.x | Executar a ponte Javascript (DialgaDex engine) para calculos precisos de tier list |
-| tmux | latest | Rodar o bot em background com gerenciamento facil de sessoes |
-| Git | latest | Controle de versao e atualizacao do codigo |
-
-> **Por que Node.js?** O calculo real de tier lists usa a engine original do DialgaDex (repositorio anexado). Usamos o Node.js como ponte (bridge) para executar a matematica nativa em JS, garantindo 100% de precisao nos resultados.
+<p align="center">
+  <img src="https://img.shields.io/badge/status-ativo-1d7a4a?style=flat-square" alt="Ativo">
+  <img src="https://img.shields.io/badge/plataforma-Telegram-1a2744?style=flat-square" alt="Telegram">
+  <img src="https://img.shields.io/badge/linguagem-Python%20%C2%B7%20Node.js-d4813a?style=flat-square" alt="Python e Node.js">
+</p>
 
 ---
 
-## Arquitetura de funcionamento
+<h3 align="center">Seu assistente definitivo para PVE no Pokemon GO.</h3>
 
-O projeto eh composto por um sistema hibrido de polling (Telegram) e rotinas agendadas (Scraping), rodando integralmente na mesma maquina virtual.
+<p align="center">
+  Montar equipes de raids perfeitas exige conhecimento profundo de mecanicas, multiplicadores de dano e status ocultos.<br>
+  O <strong>PokeGuia Bot</strong> simplifica tudo isso direto no seu Telegram: ele utiliza a engine matematica original do <strong>DialgaDex</strong><br>
+  (executada via Node.js em background) para entregar <strong>tier lists de altissima precisao</strong>, alem de eventos e chefes de reides.
+</p>
 
-```text
-┌──────────────────────────────┐   Polling       ┌──────────────────────────┐
-│  API do Telegram             │ ◀────────────── │  Core do Bot (Python)    │
-│  (Chatbot interface)         │                 │  src/bot.py              │
-└──────────────────────────────┘                 └─────────▲────────────────┘
-                                                           │ (Le arquivos .json)
-┌──────────────────────────────┐   Executa JS    ┌─────────▼────────────────┐
-│  Engine JS (Node.js)         │ ◀────────────── │  Coletores (APScheduler) │
-│  DialgaDex Scripts           │ ──────────────▶ │  src/collectors/         │
-└──────────────────────────────┘   Retorna JSON  └──────────────────────────┘
-```
+<br>
 
-| Modulo | Funcao principal |
-|---|---|
-| **Telegram Bot** | Escuta mensagens e envia respostas baseadas em dados armazenados em JSON. |
-| **Schedulers** | Baixa informacoes do LeekDuck, Pokebattler e Pokemon GO Live a cada 2 horas. |
-| **JS Bridge** | Processa 18 tipos de atacantes com regras complexas (Type Affinity) usando a engine original. |
+## O que da para fazer
 
----
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## Primeira vez? Setup unico
+### Para treinadores casuais
 
-Da raiz do projeto, execute **uma unica vez**:
+- **Acompanhar eventos** — lista completa e atualizada dos eventos correntes.
+- **Consultar raids ativas** — veja quem sao os chefes disponiveis no momento.
+- **Horas do holofote** — saiba exatamente qual o Pokemon destaque e o bonus do dia.
+- **Interacao facil** — interface conversacional fluida no aplicativo que voce ja usa.
 
-```bash
-# 1. Crie o ambiente virtual e ative-o
-python3 -m venv .venv
-source .venv/bin/activate
+</td>
+<td width="50%" valign="top">
 
-# 2. Instale as dependencias Python
-pip install -r requirements.txt
+### Para treinadores hardcore
 
-# 3. Configure a variavel de ambiente (Token do Telegram)
-export BOT_TOKEN="seu_token_do_telegram_aqui"
+- **Tier lists precisas (eDPS)** — classificacao baseada em equacoes matematicas reais do jogo.
+- **Filtros interativos** — oculte megas ou sombras direto por botoes no chat.
+- **Type Affinity** — calculo avancado que leva em conta os chefes de raid atuais.
+- **Respostas instataneas** — toda a base de dados de atributos guardada em memoria local.
 
-# 4. Instale o Node.js (necessario para a JS Bridge)
-# (Ubuntu/Debian)
-curl -fsSL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
-sudo -E bash nodesource_setup.sh
-sudo apt-get install -y nodejs
-```
+</td>
+</tr>
+</table>
 
-Apos esses 4 passos, o projeto estara pronto para execucao.
+> **Engine de precisao absoluta.** Diferente de bots comuns, as nossas metricas rodam utilizando JavaScript nativamente em um ambiente orquestrado, o que assegura que o dano e a velocidade de cada ataque sejam calculados no limite do frame.
 
----
+<br>
 
-## Fluxo diario - como rodar o projeto
+## Como acessar
 
-### Rodando em foreground (para debug e testes)
+<table>
+<tr>
+<td width="50%" align="center">
+<h4>Acessar o Bot</h4>
+<a href="https://t.me/">Abrir no Telegram</a><br>
+<sub>Busque e inicie a conversa</sub>
+</td>
+<td width="50%" align="center">
+<h4>Codigo Fonte</h4>
+<a href="https://github.com/Pedrovargas10/Pokemon-Chat-Bot">Repositorio Github</a><br>
+<sub>Codigo aberto para melhorias</sub>
+</td>
+</tr>
+</table>
 
-```bash
-# Da raiz do projeto, com o venv ativado
-export BOT_TOKEN="seu_token_do_telegram_aqui"
-python3 main.py
-```
+<br>
 
-### Rodando em background (Producao)
+## Comandos do assistente
 
-Para manter o bot online independentemente da sessao SSH, utilize o script nativo providenciado usando `tmux`.
+No aplicativo do Telegram, os comandos suportados nativamente sao:
 
-```bash
-# Inicia o bot em background via tmux
-./start_bot.sh
-```
+- `/start` — Inicia o assistente e exibe a introducao.
+- `/help` — Apresenta todos os comandos listados e suas descricoes.
+- `/tierlist <tipo>` — Gera o top 10 atacantes para um tipo especifico utilizando calculos avancados.
+- `/raids` — Exibe os chefes que estao nos ginasios agora mesmo.
+- `/events` — Resume eventos correntes e programados no jogo.
+- `/spotlight` — Informa os detalhes da hora do holofote as tercas-feiras.
 
-**Opcoes no terminal tmux:**
+## Para desenvolvedores
 
-| Comando | Acao |
-|-------|------|
-| `tmux attach -t pokemon_bot` | Visualizar logs do bot ao vivo |
-| `CTRL+B` e depois `D` | Desconectar da visualizacao (o bot continua rodando) |
-| `tmux kill-session -t pokemon_bot` | Desligar o bot completamente |
-
----
-
-## Rodando os testes
-
-A suite de testes valida as mensagens e formatações de modo a prevenir falhas na API do Telegram por parse incorreto de caracteres.
-
-```bash
-# Ative o venv
-source .venv/bin/activate
-
-# Execute a suite principal de formatacao e geracao de dados
-pytest tests/test_bot_formatting.py -v
-pytest tests/test_tierlists.py -v
-```
-
----
-
-## Estrutura do projeto
-
-```text
-.
-├── src/                        # Logica principal do bot e coletores
-│   ├── collectors/             # Scripts de scraping
-│   │   ├── dialgadex.py        # Coletor Python para tier lists
-│   │   ├── dialgadex_bridge.js # Ponte Node.js para engine DialgaDex
-│   │   ├── leekduck.py         # Coletor de eventos e spotlight
-│   │   └── pokebattler.py      # Coletor de raids
-│   ├── bot.py                  # Handlers do Telegram (comandos)
-│   ├── scheduler.py            # Orquestrador de tarefas (APScheduler)
-│   └── context_builder.py      # Formatador de respostas
-├── dialgadex/                  # Modulo do DialgaDex clonado (Engine Original)
-├── tests/                      # Suite de testes em pytest
-├── data/                       # Arquivos JSON salvos pelos coletores
-├── main.py                     # Entrypoint do sistema
-├── start_bot.sh                # Script para daemonizar via tmux
-└── requirements.txt            # Dependencias Python
-```
-
----
-
-## Comandos disponiveis para os usuarios
-
-No Telegram, os usuarios podem acessar o bot atraves dos seguintes comandos:
-
-| Comando | Descricao |
-|--------|-----------|
-| `/start` | Mensagem de boas-vindas |
-| `/help` | Listar todos os comandos disponiveis |
-| `/tierlist` | Visualizar os top 10 atacantes (por tipo) usando regras PVE detalhadas. Aceita botões interativos para filtros |
-| `/raids` | Consultar chefes de reides atuais e seus principais counters |
-| `/events` | Visualizar eventos atuais e os que irao comecar nos proximos dias |
-| `/spotlight` | Ver quais sao os proximos Pokemon da hora do holofote e os bonus aplicados |
-
----
-
-## Troubleshooting
-
-| Problema | Solucao |
-|----------|---------|
-| `Collector DialgadexCollector failed: [Errno 2] No such file or directory: 'node'` | O pacote `nodejs` nao esta instalado no sistema. Instale-o utilizando as instrucoes do setup inicial. |
-| `telegram.error.BadRequest: Can't parse entities` | Retorno da API do Telegram reclamando de caracteres reservados mal formatados (ex: underscore nao finalizado em parse Markdown). O bot atualmente utiliza parse HTML para prevencao. |
-| Bot nao responde aos comandos | O bot pode ter caido ou o token expirou. Conecte no `tmux` para inspecionar o Traceback no `main.py`. |
-| Arquivos `.json` na pasta `/data/` estao vazios | A execucao inicial dos Schedulers falhou. Verifique acesso a internet do servidor ou se a API externa sofreu reestruturacao. |
+Rodar o projeto localmente, visualizar arquitetura dos coletores e resolucao de problemas (troubleshooting): **[`docs/DESENVOLVIMENTO.md`](docs/DESENVOLVIMENTO.md)**.
