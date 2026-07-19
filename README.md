@@ -57,7 +57,7 @@
 <tr>
 <td width="50%" align="center">
 <h4>Acessar o Bot</h4>
-<a href="https://t.me/">Abrir no Telegram</a><br>
+<a href="https://t.me/pokeguia_pedro_bot">Abrir no Telegram</a><br>
 <sub>Busque e inicie a conversa</sub>
 </td>
 <td width="50%" align="center">
