@@ -18,25 +18,25 @@
 
 <br>
 
-## 🌟 Principais Funcionalidades
+## Principais Funcionalidades
 
 O bot não apenas coleta informações, mas utiliza regras e lógicas rigorosas para apresentar dados úteis para jogadores de qualquer nível — de novatos a treinadores veteranos:
 
-* **⚔️ Tier Lists de Altíssima Precisão (eDPS):**  
+* **Tier Lists de Altíssima Precisão (eDPS):**  
   Usamos a consagrada *Engine Matemática do DialgaDex* (processada via ponte nativa em Node.js) para calcular o dano real dos atacantes no jogo. Isso significa que as nossas tier lists consideram as reides ativas no momento (Type Affinity), defesa, HP e a velocidade de cada animação de ataque. Você terá a resposta cirúrgica sobre quais são os melhores Pokémon para cada tipo.
   
-* **🎯 Filtros Dinâmicos e Interativos:**  
+* **Filtros Dinâmicos e Interativos:**  
   Não quer usar Megas ou Pokémon Sombrosos? Sem problema. O bot traz botões iterativos diretamente no chat do Telegram, permitindo filtrar a tier list em tempo real com apenas um toque, sem a necessidade de digitar comandos complexos.
 
-* **📅 Eventos e Horas do Holofote:**  
+* **Eventos e Horas do Holofote:**  
   Mantenha-se por dentro do calendário do jogo. O PokéGuia resume de forma elegante os eventos atuais e futuros (coletados de fontes como LeekDuck) e avisa sobre o Pokémon em destaque na terça-feira.
 
-* **👹 Chefes de Reides Atuais:**  
+* **Chefes de Reides Atuais:**  
   Saiba exatamente quais chefes estão dominando os ginásios hoje e veja uma lista rápida dos melhores tipos e *counters* para enfrentá-los com eficiência.
 
 <br>
 
-## 📱 Como Acessar
+## Como Acessar
 
 A experiência é totalmente focada no Telegram, sem necessidade de baixar novos aplicativos ou se cadastrar em sites.
 
@@ -44,7 +44,7 @@ A experiência é totalmente focada no Telegram, sem necessidade de baixar novos
   <tr>
     <td align="center">
       <h4>Converse com o Bot</h4>
-      <a href="https://t.me/pokeguia_pedro_bot">👉 <strong>t.me/pokeguia_pedro_bot</strong></a><br>
+      <a href="https://t.me/pokeguia_pedro_bot"><strong>t.me/pokeguia_pedro_bot</strong></a><br>
       <sub>Clique para abrir o Telegram</sub>
     </td>
   </tr>
@@ -52,7 +52,7 @@ A experiência é totalmente focada no Telegram, sem necessidade de baixar novos
 
 <br>
 
-## 💬 Comandos do Assistente
+## Comandos do Assistente
 
 Ao iniciar uma conversa, os seguintes comandos já estarão à sua disposição:
 
@@ -65,9 +65,9 @@ Ao iniciar uma conversa, os seguintes comandos já estarão à sua disposição:
 
 <br>
 
-## 💻 Para Desenvolvedores
+## Para Desenvolvedores
 
 O PokéGuia Bot foi construído com Python 3.10+, utilizando um orquestrador agendado (APScheduler) e uma ponte JavaScript para cálculos. 
 
 Se você deseja rodar o projeto localmente, entender a arquitetura dos coletores de dados ou ver o guia de solução de problemas (Troubleshooting), acesse nossa documentação técnica: 
-👉 **[`docs/DESENVOLVIMENTO.md`](docs/DESENVOLVIMENTO.md)**
+**[`docs/DESENVOLVIMENTO.md`](docs/DESENVOLVIMENTO.md)**
