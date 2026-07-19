@@ -93,6 +93,8 @@ async def handle_spotlight(
 
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+import json
+from pathlib import Path
 
 async def handle_tierlist(
     update: Update, context: ContextTypes.DEFAULT_TYPE
