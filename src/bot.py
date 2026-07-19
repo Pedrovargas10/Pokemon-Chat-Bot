@@ -25,14 +25,14 @@ async def handle_start(
     """Send a welcome message when /start is issued."""
     name = update.effective_user.first_name or "Treinador"
     await update.message.reply_text(
-        f"👋 Olá, {name}! Eu sou o **PokéGuia**, seu assistente de Pokémon GO!\n\n"
+        f"👋 Olá, {name}! Eu sou o <b>PokéGuia</b>, seu assistente de Pokémon GO!\n\n"
         "Pode me perguntar qualquer coisa sobre:\n"
         "🎯 Eventos atuais e futuros\n"
         "⚔️ Raids e melhores contadores\n"
         "✨ Spotlight Hours e bônus\n"
         "📊 Tier lists de atacantes\n\n"
         "Envie sua pergunta ou use /help para ver os comandos!",
-        parse_mode="Markdown",
+        parse_mode="HTML",
     )
 
 
@@ -41,7 +41,7 @@ async def handle_help(
 ) -> None:
     """List available commands."""
     await update.message.reply_text(
-        "📖 **Comandos disponíveis:**\n\n"
+        "📖 <b>Comandos disponíveis:</b>\n\n"
         "/start — Iniciar o bot\n"
         "/help — Ver esta ajuda\n"
         "/tierlist — Tier lists de atacantes (PvE)\n"
@@ -49,7 +49,7 @@ async def handle_help(
         "/events — Eventos atuais e futuros\n"
         "/spotlight — Próximos Spotlight Hours\n\n"
         "Ou simplesmente envie sua pergunta em texto livre! 💬",
-        parse_mode="Markdown",
+        parse_mode="HTML",
     )
 
 
@@ -190,14 +190,14 @@ async def handle_tierlist(
         await update.message.reply_text("❌ Nenhum Pokémon passou nos filtros.")
         return
         
-    lines = [f"📊 **Top 10 Atacantes: {target_type}**"]
+    lines = [f"📊 <b>Top 10 Atacantes: {target_type}</b>"]
     if filters_text:
-        lines.append(f"*(Filtros: {', '.join(filters_text)})*\n")
+        lines.append(f"<i>(Filtros: {', '.join(filters_text)})</i>\n")
     else:
         lines.append("\n")
         
     for i, r in enumerate(filtered[:10]):
-        lines.append(f"**{i+1}. {r['name']}**")
+        lines.append(f"<b>{i+1}. {r['name']}</b>")
         lines.append(f"⚔️ {r['fm']} + {r['cm']}")
         lines.append(f"📈 eDPS: {r['edps']}\n")
         
@@ -218,11 +218,11 @@ async def handle_tierlist(
         
     if is_callback:
         try:
-            await message.edit_text(text_out, parse_mode="Markdown", reply_markup=reply_markup)
+            await message.edit_text(text_out, parse_mode="HTML", reply_markup=reply_markup)
         except Exception:
             pass # Ignore "message is not modified" errors
     else:
-        await message.reply_text(text_out, parse_mode="Markdown", reply_markup=reply_markup)
+        await message.reply_text(text_out, parse_mode="HTML", reply_markup=reply_markup)
 
 async def handle_message(
     update: Update, context: ContextTypes.DEFAULT_TYPE
