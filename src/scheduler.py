@@ -7,6 +7,10 @@ import logging
 from typing import TYPE_CHECKING
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from src.collectors.leekduck import LeekDuckCollector
+from src.collectors.pokebattler import PokebattlerCollector
+from src.collectors.pokemongo_live import PokemonGoLiveCollector
+from src.collectors.dialgadex import DialgadexCollector
 
 if TYPE_CHECKING:
     from src.collectors.base import BaseCollector

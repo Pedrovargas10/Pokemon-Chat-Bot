@@ -1,5 +1,13 @@
-from src.collectors.leekduck import LeekDuckCollector
-from src.collectors.pokemongo_live import PokemonGoLiveCollector
-from src.collectors.pokebattler import PokebattlerCollector
+from .base import BaseCollector
+from .leekduck import LeekDuckCollector
+from .pokebattler import PokebattlerCollector
+from .pokemongo_live import PokemonGoLiveCollector
+from .dialgadex import DialgadexCollector
 
-__all__ = ["LeekDuckCollector", "PokemonGoLiveCollector", "PokebattlerCollector"]
+__all__ = [
+    "BaseCollector",
+    "LeekDuckCollector",
+    "PokebattlerCollector",
+    "PokemonGoLiveCollector",
+    "DialgadexCollector",
+]

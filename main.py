@@ -12,6 +12,7 @@ from src.collectors import (
     LeekDuckCollector,
     PokemonGoLiveCollector,
     PokebattlerCollector,
+    DialgadexCollector,
 )
 from src.scheduler import run_all_collectors, setup_scheduler
 from src.bot import create_bot
@@ -37,6 +38,7 @@ def main() -> None:
         LeekDuckCollector(data_dir=settings.data_dir),
         PokemonGoLiveCollector(data_dir=settings.data_dir),
         PokebattlerCollector(data_dir=settings.data_dir),
+        DialgadexCollector(data_dir=settings.data_dir),
     ]
 
     # 2. Initialize Gemini client
