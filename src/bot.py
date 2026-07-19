@@ -174,10 +174,6 @@ async def handle_tierlist(
     
     # Apply filters
     filters_text = []
-    no_megas = "-nomegas" in args
-    no_shadows = "-noshadows" in args
-    pure_only = "-puro" in args or "-pure" in args
-    show_all = "-tudo" in args or "-all" in args
     
     if no_megas: filters_text.append("Sem Megas")
     if no_shadows: filters_text.append("Sem Sombras")
