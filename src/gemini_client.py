@@ -45,7 +45,7 @@ class GeminiClient:
                 config=genai_types.GenerateContentConfig(
                     system_instruction=self._system_prompt,
                     temperature=0.7,
-                    max_output_tokens=2048,
+                    max_output_tokens=4096,
                 ),
                 contents=question,
             )
