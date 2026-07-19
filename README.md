@@ -10,77 +10,64 @@
 
 ---
 
-<h3 align="center">Seu assistente definitivo para PVE no Pokemon GO.</h3>
+<h3 align="center">O conhecimento de um Mestre Pokémon diretamente no seu Telegram.</h3>
 
 <p align="center">
-  Montar equipes de raids perfeitas exige conhecimento profundo de mecanicas, multiplicadores de dano e status ocultos.<br>
-  O <strong>PokeGuia Bot</strong> simplifica tudo isso direto no seu Telegram: ele utiliza a engine matematica original do <strong>DialgaDex</strong><br>
-  (executada via Node.js em background) para entregar <strong>tier lists de altissima precisao</strong>, alem de eventos e chefes de reides.
+  O <strong>PokéGuia Bot</strong> nasceu para resolver um problema real de quem joga Pokémon GO: a constante busca por informações espalhadas pela internet. Chega de abrir dezenas de abas para saber qual o evento da semana, quem é o chefe da reide ou qual Pokémon usar para dar o maior dano possível. Tudo o que você precisa agora está a um comando de distância, respondido de forma instantânea na palma da sua mão.
 </p>
 
 <br>
 
-## O que da para fazer
+## 🌟 Principais Funcionalidades
 
-<table>
-<tr>
-<td width="50%" valign="top">
+O bot não apenas coleta informações, mas utiliza regras e lógicas rigorosas para apresentar dados úteis para jogadores de qualquer nível — de novatos a treinadores veteranos:
 
-### Para treinadores casuais
+* **⚔️ Tier Lists de Altíssima Precisão (eDPS):**  
+  Usamos a consagrada *Engine Matemática do DialgaDex* (processada via ponte nativa em Node.js) para calcular o dano real dos atacantes no jogo. Isso significa que as nossas tier lists consideram as reides ativas no momento (Type Affinity), defesa, HP e a velocidade de cada animação de ataque. Você terá a resposta cirúrgica sobre quais são os melhores Pokémon para cada tipo.
+  
+* **🎯 Filtros Dinâmicos e Interativos:**  
+  Não quer usar Megas ou Pokémon Sombrosos? Sem problema. O bot traz botões iterativos diretamente no chat do Telegram, permitindo filtrar a tier list em tempo real com apenas um toque, sem a necessidade de digitar comandos complexos.
 
-- **Acompanhar eventos** — lista completa e atualizada dos eventos correntes.
-- **Consultar raids ativas** — veja quem sao os chefes disponiveis no momento.
-- **Horas do holofote** — saiba exatamente qual o Pokemon destaque e o bonus do dia.
-- **Interacao facil** — interface conversacional fluida no aplicativo que voce ja usa.
+* **📅 Eventos e Horas do Holofote:**  
+  Mantenha-se por dentro do calendário do jogo. O PokéGuia resume de forma elegante os eventos atuais e futuros (coletados de fontes como LeekDuck) e avisa sobre o Pokémon em destaque na terça-feira.
 
-</td>
-<td width="50%" valign="top">
-
-### Para treinadores hardcore
-
-- **Tier lists precisas (eDPS)** — classificacao baseada em equacoes matematicas reais do jogo.
-- **Filtros interativos** — oculte megas ou sombras direto por botoes no chat.
-- **Type Affinity** — calculo avancado que leva em conta os chefes de raid atuais.
-- **Respostas instataneas** — toda a base de dados de atributos guardada em memoria local.
-
-</td>
-</tr>
-</table>
-
-> **Engine de precisao absoluta.** Diferente de bots comuns, as nossas metricas rodam utilizando JavaScript nativamente em um ambiente orquestrado, o que assegura que o dano e a velocidade de cada ataque sejam calculados no limite do frame.
+* **👹 Chefes de Reides Atuais:**  
+  Saiba exatamente quais chefes estão dominando os ginásios hoje e veja uma lista rápida dos melhores tipos e *counters* para enfrentá-los com eficiência.
 
 <br>
 
-## Como acessar
+## 📱 Como Acessar
 
-<table>
-<tr>
-<td width="50%" align="center">
-<h4>Acessar o Bot</h4>
-<a href="https://t.me/pokeguia_pedro_bot">Abrir no Telegram</a><br>
-<sub>Busque e inicie a conversa</sub>
-</td>
-<td width="50%" align="center">
-<h4>Codigo Fonte</h4>
-<a href="https://github.com/Pedrovargas10/Pokemon-Chat-Bot">Repositorio Github</a><br>
-<sub>Codigo aberto para melhorias</sub>
-</td>
-</tr>
+A experiência é totalmente focada no Telegram, sem necessidade de baixar novos aplicativos ou se cadastrar em sites.
+
+<table align="center">
+  <tr>
+    <td align="center">
+      <h4>Converse com o Bot</h4>
+      <a href="https://t.me/pokeguia_pedro_bot">👉 <strong>t.me/pokeguia_pedro_bot</strong></a><br>
+      <sub>Clique para abrir o Telegram</sub>
+    </td>
+  </tr>
 </table>
 
 <br>
 
-## Comandos do assistente
+## 💬 Comandos do Assistente
 
-No aplicativo do Telegram, os comandos suportados nativamente sao:
+Ao iniciar uma conversa, os seguintes comandos já estarão à sua disposição:
 
-- `/start` — Inicia o assistente e exibe a introducao.
-- `/help` — Apresenta todos os comandos listados e suas descricoes.
-- `/tierlist <tipo>` — Gera o top 10 atacantes para um tipo especifico utilizando calculos avancados.
-- `/raids` — Exibe os chefes que estao nos ginasios agora mesmo.
-- `/events` — Resume eventos correntes e programados no jogo.
-- `/spotlight` — Informa os detalhes da hora do holofote as tercas-feiras.
+* `/start` — Inicia o assistente e exibe a mensagem de boas-vindas.
+* `/help` — Apresenta todos os comandos listados e suas descrições.
+* `/tierlist <tipo>` — Gera o top 10 atacantes para um tipo específico. Aceita filtros avançados via botões no chat.
+* `/raids` — Exibe os chefes que estão nos ginásios no momento atual.
+* `/events` — Lista os eventos correntes e os próximos que irão começar.
+* `/spotlight` — Informa o Pokémon da próxima Hora do Holofote e o bônus semanal.
 
-## Para desenvolvedores
+<br>
 
-Rodar o projeto localmente, visualizar arquitetura dos coletores e resolucao de problemas (troubleshooting): **[`docs/DESENVOLVIMENTO.md`](docs/DESENVOLVIMENTO.md)**.
+## 💻 Para Desenvolvedores
+
+O PokéGuia Bot foi construído com Python 3.10+, utilizando um orquestrador agendado (APScheduler) e uma ponte JavaScript para cálculos. 
+
+Se você deseja rodar o projeto localmente, entender a arquitetura dos coletores de dados ou ver o guia de solução de problemas (Troubleshooting), acesse nossa documentação técnica: 
+👉 **[`docs/DESENVOLVIMENTO.md`](docs/DESENVOLVIMENTO.md)**
