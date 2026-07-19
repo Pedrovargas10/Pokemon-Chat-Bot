@@ -154,8 +154,8 @@ class DialgadexCollector(BaseCollector):
         # Save a minified Markdown for the AI so it still has context
         lines = ["# Melhores Atacantes PvE (Tier List Atualizada)"]
         for atk_type in types:
-            # AI only needs to see released, top 3
-            valid = [r for r in rankings[atk_type] if r["is_released"]]
+            # AI sees top 5 of all pokemon (released flag ignored since user said everything is released)
+            valid = rankings[atk_type]
             if valid:
                 lines.append(f"\n## {atk_type}")
                 for i, r in enumerate(valid[:5]):

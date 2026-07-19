@@ -103,12 +103,11 @@ async def handle_tierlist(
         query = update.callback_query
         await query.answer()
         data = query.data.split("|")
-        # Format: tl|type|no_megas|no_shadows|pure_only|show_all
+        # Format: tl|type|no_megas|no_shadows|pure_only
         req_type = data[1]
         no_megas = data[2] == "1"
         no_shadows = data[3] == "1"
         pure_only = data[4] == "1"
-        show_all = data[5] == "1"
         # Since it's a callback, we reply by editing the message
         message = query.message
         is_callback = True
@@ -126,7 +125,6 @@ async def handle_tierlist(
         no_megas = "-nomegas" in args
         no_shadows = "-noshadows" in args
         pure_only = "-puro" in args or "-pure" in args
-        show_all = "-tudo" in args or "-all" in args
         message = update.message
         is_callback = False
 
@@ -182,15 +180,12 @@ async def handle_tierlist(
     if no_megas: filters_text.append("Sem Megas")
     if no_shadows: filters_text.append("Sem Sombras")
     if pure_only: filters_text.append("Apenas Nativos do Tipo")
-    if show_all: filters_text.append("Incluindo Não Lançados")
-    else: filters_text.append("Apenas Lançados")
 
     filtered = []
     for r in rankings:
         if no_megas and r["is_mega"]: continue
         if no_shadows and r["is_shadow"]: continue
         if pure_only and not r["is_native"]: continue
-        if not show_all and not r["is_released"]: continue
         filtered.append(r)
         
     if not filtered:
@@ -211,18 +206,16 @@ async def handle_tierlist(
     text_out = "\n".join(lines)
     
     # Generate Interactive Buttons
-    def make_btn_data(m: bool, s: bool, p: bool, a: bool) -> str:
-        return f"tl|{target_type.lower()}|{'1' if m else '0'}|{'1' if s else '0'}|{'1' if p else '0'}|{'1' if a else '0'}"
+    def make_btn_data(m: bool, s: bool, p: bool) -> str:
+        return f"tl|{target_type.lower()}|{'1' if m else '0'}|{'1' if s else '0'}|{'1' if p else '0'}"
 
     # Buttons to toggle filters
-    btn_mega = InlineKeyboardButton(f"{'🟢' if not no_megas else '🔴'} Megas", callback_data=make_btn_data(not no_megas, no_shadows, pure_only, show_all))
-    btn_shadow = InlineKeyboardButton(f"{'🟢' if not no_shadows else '🔴'} Sombras", callback_data=make_btn_data(no_megas, not no_shadows, pure_only, show_all))
-    btn_pure = InlineKeyboardButton(f"{'🟢' if pure_only else '🔴'} Só Nativos", callback_data=make_btn_data(no_megas, no_shadows, not pure_only, show_all))
-    btn_all = InlineKeyboardButton(f"{'🟢' if show_all else '🔴'} Especulativos", callback_data=make_btn_data(no_megas, no_shadows, pure_only, not show_all))
+    btn_mega = InlineKeyboardButton(f"{'🟢' if not no_megas else '🔴'} Megas", callback_data=make_btn_data(not no_megas, no_shadows, pure_only))
+    btn_shadow = InlineKeyboardButton(f"{'🟢' if not no_shadows else '🔴'} Sombras", callback_data=make_btn_data(no_megas, not no_shadows, pure_only))
+    btn_pure = InlineKeyboardButton(f"{'🟢' if pure_only else '🔴'} Só Nativos", callback_data=make_btn_data(no_megas, no_shadows, not pure_only))
     
     reply_markup = InlineKeyboardMarkup([
-        [btn_mega, btn_shadow],
-        [btn_pure, btn_all]
+        [btn_mega, btn_shadow, btn_pure]
     ])
         
     if is_callback:
