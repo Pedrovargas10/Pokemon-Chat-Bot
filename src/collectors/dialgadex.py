@@ -37,6 +37,8 @@ class DialgadexCollector(BaseCollector):
                 continue
                 
             base_attack = p["stats"]["baseAttack"]
+            base_defense = p["stats"].get("baseDefense", 100)
+            base_stamina = p["stats"].get("baseStamina", 100)
             pkm_types = p["types"]
             fms = p.get("fm", [])
             cms = p.get("cm", [])
@@ -80,7 +82,12 @@ class DialgadexCollector(BaseCollector):
                         
                         cycle_dps = (fdps * ceps + cdps * feps) / (ceps + feps)
                         
-                        tdm = (base_attack + 15) * cycle_dps * damage_multiplier
+                        bulk = (base_defense + 15) * (base_stamina + 15)
+                        if damage_multiplier > 1.0:
+                            bulk = bulk / 1.2 # Sombras tomam 20% a mais de dano
+                            
+                        dps_metric = (base_attack + 15) * cycle_dps * damage_multiplier
+                        tdm = dps_metric * (bulk ** 0.25)
                         
                         atk_type = cm['type']
                         if atk_type not in best_by_type or tdm > best_by_type[atk_type][0]:
